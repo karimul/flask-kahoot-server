@@ -57,7 +57,7 @@
     - info >> untuk pin tertentu, dia soalnya yang mana
     {
         game-pin
-        questions-id
+        quiz-id
         users: {
             user-id
             username

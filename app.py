@@ -1,4 +1,5 @@
 from flask import Flask, request, json, jsonify
+from random import randint
 import requests
 import os
 app = Flask(__name__)
@@ -83,6 +84,73 @@ def getThatQuestion(quizId, questionNumber):
     for question in quizData["question-list"]:
         if question["question-number"] == int(questionNumber):
             return jsonify(question)
+
+
+# bikin game baru
+@app.route('/game', methods=["POST"])
+def createGame():
+    body = request.json
+
+    # dapetin info quiz
+    quizzesFile = open('./quizzes-file.json')
+    quizzesData = json.load(quizzesFile)
+
+    for quiz in quizzesData["quizzes"]:
+        quiz = json.loads(quiz)
+
+        if quiz["quiz-id"] == int(body["quiz-id"]):
+            gameInfo = quiz
+
+    gameInfo["game-pin"] = randint(100000, 999999)
+    gameInfo["user-list"] = []
+
+
+    # create skeleton for list of game buat nulis 
+    # kalau belum pernah main game sama sekali
+    gamesData = {
+        "game-list": []
+    }
+
+    # simpen data game nya
+    if os.path.exists('./games-file.json'):
+        gamesFile = open('./games-file.json', 'r')
+        gamesData = json.load(gamesFile)
+    else:
+        gamesFile = open('./games-file.json', 'x')
+
+    with open('./games-file.json', 'w') as gamesFile:
+        gamesData["game-list"].append(gameInfo)
+        gamesFile.write(str(json.dumps(gamesData)))
+
+    return jsonify(gameInfo)
+
+
+@app.route('/game/join', methods=["POST"])
+def joinGame():
+    body = request.json
+
+    # open game data information
+    gamesFile = open('./games-file.json')
+    gamesData = json.load(gamesFile)
+
+    position = 0
+    for i in range(len(gamesData["game-list"])):
+        game = gamesData["game-list"][i]
+
+        if game["game-pin"] == int(body["game-pin"]):
+            if body["username"] not in game["user-list"]:
+                game["user-list"].append(body["username"])
+                
+                gameInfo = game
+                position = i
+                break
+            # TODO: error kalau usernya udah dipake
+
+    with open('./games-file.json', 'w') as gamesFile:
+        gamesData["game-list"][position] = gameInfo
+        gamesFile.write(str(json.dumps(gamesData)))
+
+    return jsonify(request.json)
 
 
 # ```
