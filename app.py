@@ -85,5 +85,33 @@ def getThatQuestion(quizId, questionNumber):
             return jsonify(question)
 
 
+# ```
+# 1. harus ada soalnya
+# 2. ada pilihan jawabannya
+# 3. identitas soalnya jelas
+# 4. yang jawabnya juga tau siapa
+# 5. si jawabannya
+# 6. pin game nya
+# ```
+
+@app.route('/answer', methods=["POST"])
+def submitAnswer():
+    body = request.json
+
+    # buka file question
+    questionsFile = open('./question-file.json')
+    questionsData = json.load(questionsFile)
+
+    for question in questionsData["questions"]:
+        question = json.loads(question)
+
+        if question["quiz-id"] == int(body["quiz-id"]) and question["question-number"] == int(body["question-number"]):
+            if question["answer"] == body["answer"]:
+                return "True"
+            else:
+                return "False"
+
+    return jsonify(request.json)
+
 if __name__ == "__main__":
     app.run(debug=True, port=14045)
