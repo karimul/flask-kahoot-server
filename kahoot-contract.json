@@ -8,18 +8,18 @@
     username
     password
     email
-    game-history: [
-        {
-            question-id
-            points
-            rank
-        },
-        {
-            question-id
-            points
-            rank
-        },
-    ]
+    // game-history: [
+    //     {
+    //         question-id
+    //         points
+    //         rank
+    //     },
+    //     {
+    //         question-id
+    //         points
+    //         rank
+    //     },
+    // ]
     profile-picture
 }
 - questions (and answer)
@@ -64,7 +64,6 @@
         }
         leaderboards: [
             {
-                user-id
                 username
                 score
             }

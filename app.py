@@ -103,6 +103,7 @@ def createGame():
 
     gameInfo["game-pin"] = randint(100000, 999999)
     gameInfo["user-list"] = []
+    gameInfo["leaderboard"] = []
 
 
     # create skeleton for list of game buat nulis 
@@ -140,7 +141,11 @@ def joinGame():
         if game["game-pin"] == int(body["game-pin"]):
             if body["username"] not in game["user-list"]:
                 game["user-list"].append(body["username"])
-                
+                game["leaderboard"].append({
+                    "username": body["username"],
+                    "score": 0
+                })
+
                 gameInfo = game
                 position = i
                 break
@@ -162,8 +167,9 @@ def joinGame():
 # 6. pin game nya
 # ```
 
-@app.route('/answer', methods=["POST"])
+@app.route('/game/answer', methods=["POST"])
 def submitAnswer():
+    isTrue = False
     body = request.json
 
     # buka file question
@@ -175,11 +181,53 @@ def submitAnswer():
 
         if question["quiz-id"] == int(body["quiz-id"]) and question["question-number"] == int(body["question-number"]):
             if question["answer"] == body["answer"]:
-                return "True"
-            else:
-                return "False"
+                isTrue = True
+
+
+    # TODO: update skor/leaderboard
+    gamesFile = open('./games-file.json')
+    gamesData = json.load(gamesFile)
+
+    gamePosition = 0
+    for i in range(len(gamesData["game-list"])):
+        game = gamesData["game-list"][i]
+
+        if game["game-pin"] == body["game-pin"]:
+            if isTrue:
+                userPosition = 0
+                for j in range(len(game["leaderboard"])): 
+                    userData = game["leaderboard"][j]
+
+                    if userData["username"] == body["username"]:
+                        userData["score"] += 100
+
+                        userInfo = userData
+                        userPosition = j
+                        break
+                
+                game["leaderboard"][userPosition] = userInfo
+                gameInfo = game
+                gamePosition = i
+                break
+
+    with open('./games-file.json', 'w') as gamesFile:
+        gamesData["game-list"][gamePosition] = gameInfo
+        gamesFile.write(str(json.dumps(gamesData)))
+    
 
     return jsonify(request.json)
+
+@app.route('/game/leaderboard', methods=["POST"])
+def getLeaderboard():
+    body = request.json
+
+    gamesFile = open('./games-file.json')
+    gamesData = json.load(gamesFile)
+
+    for game in gamesData["game-list"]:
+        if game["game-pin"] == body["game-pin"]:
+            # TODO: sorting dari yang paling gede ke kecil
+            return jsonify(game["leaderboard"])
 
 if __name__ == "__main__":
     app.run(debug=True, port=14045)
