@@ -5,6 +5,31 @@ import os
 app = Flask(__name__)
 
 
+# user registrasi
+@app.route('/register', methods=["POST"])
+def register():
+    body = request.json
+
+    usersData = {
+        "total-user-registered": 0,
+        "user-list": []
+    }
+
+    if os.path.exists('./users-file.json'):
+        usersFile = open('./users-file.json', 'r')
+        usersData = json.load(usersFile)
+    else:
+        usersFile = open('./users-file.json', 'x')
+
+    usersData["total-user-registered"] += 1
+    usersData["user-list"].append(body)
+
+    usersFile = open('./users-file.json', 'w')
+    usersFile.write(str(json.dumps(usersData)))
+
+    return jsonify(body)
+
+
 # bikin kuis baru
 @app.route('/quiz', methods=['POST'])
 def createQuiz():
