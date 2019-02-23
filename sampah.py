@@ -92,3 +92,51 @@ def ngebuktiin():
 #     caranya mirip sama yang question
 # 2. bagian add question, yang bawah itu 
 # ```
+
+
+@app.route('/<anything>')
+def anythingHandler(anything):
+    abort(404)
+
+@app.errorhandler(404)
+def errorNih(error):
+    return "ga ada"
+
+
+data = []
+
+@app.route('/cobain/<data>')
+def cobainRender(data):
+    return render_template('index.html', beybeh = data)
+
+@app.route('/', methods=["POST"])
+def tryAja():
+    body = request.json
+    data.append(body["name"])
+
+    return jsonify(data)
+        # if body["todo"] == "encrypt":
+        #     return encrypt(body["data"])
+        # elif body["todo"] == "decrypt":
+        #     return decrypt(body["data"])
+
+@app.route('/<name>', methods=["DELETE", "PUT"])
+def modifyData(name):
+    body = request.json
+
+    if request.method == "DELETE":        
+        data.remove(name)
+    elif request.method == "PUT":
+        index = data.index(name)
+        data[index] = body["new-name"]
+
+    return jsonify(data)
+
+def encrypt(string):
+    return string + "encrypted"
+
+def decrypt(string):
+    return string + "decrypted"
+
+# delete quis sama edit informasi tentang kuisnya
+# @app.route('/quizzes/<quizId>', methods=["PUT", "DELETE"])
