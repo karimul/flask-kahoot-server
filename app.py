@@ -30,6 +30,23 @@ def register():
     return jsonify(body)
 
 
+# user login
+@app.route('/login', methods=["POST"])
+def login():
+    isLogin = False
+    body = request.json
+
+    usersFile = open('./users-file.json', 'r')
+    usersData = json.load(usersFile)
+
+    for user in usersData["user-list"]:
+        if user["username"] == body["username"]:
+            if user["password"] == body["password"]:
+                isLogin = True
+
+    body["status"] = isLogin
+    return jsonify(body)
+
 # bikin kuis baru
 @app.route('/quiz', methods=['POST'])
 def createQuiz():
