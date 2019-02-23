@@ -1,7 +1,7 @@
 {
 	"_type": "export",
 	"__export_format": 3,
-	"__export_date": "2019-02-20T09:00:53.926Z",
+	"__export_date": "2019-02-23T03:20:13.318Z",
 	"__export_source": "insomnia.desktop.app:v6.3.2",
 	"resources": [
 		{
@@ -191,7 +191,7 @@
 			"authentication": {},
 			"body": {
 				"mimeType": "application/json",
-				"text": "{\n\t\"quiz-id\": 124,\n\t\"quiz-name\": \"Tentang Aku\",\n\t\"quiz-category\": \"Personal\",\n\t\"question-list\": []\n}"
+				"text": "{\n\t\"quiz-id\": 125,\n\t\"quiz-name\": \"Tentang Kita\",\n\t\"quiz-category\": \"Personal\",\n\t\"question-list\": []\n}"
 			},
 			"created": 1550653192400,
 			"description": "",
@@ -205,7 +205,7 @@
 			"isPrivate": false,
 			"metaSortKey": -1550647538986,
 			"method": "POST",
-			"modified": 1550653192400,
+			"modified": 1550804068398,
 			"name": "Quiz",
 			"parameters": [],
 			"parentId": "fld_193bc2fed8054a279627a360fe1b0ad8",
@@ -262,6 +262,253 @@
 			"settingSendCookies": true,
 			"settingStoreCookies": true,
 			"url": "localhost:14045/quizzes/123/questions/1",
+			"_type": "request"
+		},
+		{
+			"_id": "req_62defd208cd7464894867b95dcc7995b",
+			"authentication": {},
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\n\t\"answer\": \"A\",\n\t\"quiz-id\": 123,\n\t\"question-number\": 1,\n\t\"username\": \"immhawari\",\n\t\"game-pin\": 251802\n}"
+			},
+			"created": 1550714358884,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_ee2a6154745a4a069c445defc82aacb8",
+					"name": "Content-Type",
+					"value": "application/json"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1550714358884,
+			"method": "POST",
+			"modified": 1550732439555,
+			"name": "Answer Question",
+			"parameters": [],
+			"parentId": "fld_193bc2fed8054a279627a360fe1b0ad8",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "localhost:14045/game/answer",
+			"_type": "request"
+		},
+		{
+			"_id": "req_395f95bbd6414c809a52b5d5d8d8a854",
+			"authentication": {},
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\n\t\"quiz-id\": 123\n}"
+			},
+			"created": 1550720043765,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_44c8295e3f9f4cad936dae9a37ffac20",
+					"name": "Content-Type",
+					"value": "application/json"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1550720043765,
+			"method": "POST",
+			"modified": 1550720101777,
+			"name": "Create Game",
+			"parameters": [],
+			"parentId": "fld_193bc2fed8054a279627a360fe1b0ad8",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "localhost:14045/game",
+			"_type": "request"
+		},
+		{
+			"_id": "req_a302c05499014a45a8558079b82109e6",
+			"authentication": {},
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\n\t\"game-pin\": 251802,\n\t\"username\": \"ahikmatf\"\n}"
+			},
+			"created": 1550722128327,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_20741b18ae6a476cac72f4e6422ce9dc",
+					"name": "Content-Type",
+					"value": "application/json"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1550722128327,
+			"method": "POST",
+			"modified": 1550736648175,
+			"name": "Join Game",
+			"parameters": [],
+			"parentId": "fld_193bc2fed8054a279627a360fe1b0ad8",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "localhost:14045/game/join",
+			"_type": "request"
+		},
+		{
+			"_id": "req_c49029f199d845ec8a792079867eeb10",
+			"authentication": {},
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\n\t\"game-pin\": 251802\n}"
+			},
+			"created": 1550736088854,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_f7bea65b48a048d8ae7fb1d556f5cf00",
+					"name": "Content-Type",
+					"value": "application/json"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1550736088854,
+			"method": "POST",
+			"modified": 1550736129175,
+			"name": "Leaderboard",
+			"parameters": [],
+			"parentId": "fld_193bc2fed8054a279627a360fe1b0ad8",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "localhost:14045/game/leaderboard",
+			"_type": "request"
+		},
+		{
+			"_id": "req_a5bc0e2fb4be4267899c1ccd6dd145e4",
+			"authentication": {},
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\n\t\"todo\": \"encrypt\",\n\t\"data\": \"a\",\n\t\"name\": \"irama\",\n\t\"new-name\": \"rhhhhhom\"\n}"
+			},
+			"created": 1550804077157,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_65a9701e0c004903bb046d66569f0929",
+					"name": "Content-Type",
+					"value": "application/json"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1550804077157,
+			"method": "PUT",
+			"modified": 1550807225437,
+			"name": "Try Aja",
+			"parameters": [],
+			"parentId": "fld_193bc2fed8054a279627a360fe1b0ad8",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "localhost:14045/rhoma",
+			"_type": "request"
+		},
+		{
+			"_id": "req_967c636b792f4347883aa27614e9bed0",
+			"authentication": {},
+			"body": {},
+			"created": 1550818409880,
+			"description": "",
+			"headers": [],
+			"isPrivate": false,
+			"metaSortKey": -1550818409880,
+			"method": "GET",
+			"modified": 1550890033438,
+			"name": "Cobain",
+			"parameters": [],
+			"parentId": "fld_193bc2fed8054a279627a360fe1b0ad8",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "localhost:14045/cobain",
+			"_type": "request"
+		},
+		{
+			"_id": "req_9dafff8c8522466189a83227450720da",
+			"authentication": {},
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\n\t\"user-id\": 345345,\n\t\"username\": \"asdasd\",\n\t\"password\": \"qwerty\",\n\t\"email\": \"email@asep.com\",\n\t\"full-name\": \"Fat Hikmat Asep\"\n}"
+			},
+			"created": 1550888413256,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_64347208f47b4974a61f62cd8bf0f732",
+					"name": "Content-Type",
+					"value": "application/json"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1550888413256,
+			"method": "POST",
+			"modified": 1550891593012,
+			"name": "Register",
+			"parameters": [],
+			"parentId": "fld_193bc2fed8054a279627a360fe1b0ad8",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "localhost:14045/register",
+			"_type": "request"
+		},
+		{
+			"_id": "req_1a19226e42924aedb77a2fc384c48231",
+			"authentication": {},
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\n\t\"username\": \"asdasd\",\n\t\"password\": \"qwerty\"\n}"
+			},
+			"created": 1550888881660,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_8114226c3587437294be70ff221af941",
+					"name": "Content-Type",
+					"value": "application/json"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1550888881660,
+			"method": "POST",
+			"modified": 1550891683958,
+			"name": "Login",
+			"parameters": [],
+			"parentId": "fld_193bc2fed8054a279627a360fe1b0ad8",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "localhost:14045/login",
 			"_type": "request"
 		}
 	]
