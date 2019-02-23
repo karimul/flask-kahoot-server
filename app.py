@@ -2,6 +2,9 @@ from flask import Flask, request, json, jsonify
 from random import randint
 import requests
 import os
+
+from src.utils.crypt import encrypt, decrypt
+
 app = Flask(__name__)
 
 
@@ -22,6 +25,8 @@ def register():
         usersFile = open('./users-file.json', 'x')
 
     usersData["total-user-registered"] += 1
+
+    body["password"] = encrypt(body["password"])
     usersData["user-list"].append(body)
 
     usersFile = open('./users-file.json', 'w')
@@ -41,11 +46,12 @@ def login():
 
     for user in usersData["user-list"]:
         if user["username"] == body["username"]:
-            if user["password"] == body["password"]:
+            if decrypt(user["password"]) == body["password"]:
                 isLogin = True
 
     body["status"] = isLogin
     return jsonify(body)
+
 
 # bikin kuis baru
 @app.route('/quiz', methods=['POST'])
